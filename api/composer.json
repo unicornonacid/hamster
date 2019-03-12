@@ -58,6 +58,7 @@
         }
     },
     "require-dev": {
+        "behat/behat": "^3.5",
         "symfony/phpunit-bridge": "4.2.*"
     }
 }
