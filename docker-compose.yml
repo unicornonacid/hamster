@@ -1,18 +1,8 @@
 version: '3.7'
 
 services:
-  php:
-    image: unicornonacid/hamster-php:develop
-    build:
-      context: ./docker/php
-      dockerfile: ./Dockerfile
-    depends_on:
-      - db
-    volumes:
-      - ./api:/srv/api:rw
-
-  nginx:
-    image: unicornonacid/hamster-nginx:develop
+  api:
+    image: unicornonacid/hamster-api:develop
     build:
       context: docker/nginx
       dockerfile: ./Dockerfile
@@ -22,6 +12,16 @@ services:
       - 8080:80
     volumes:
       - ./api/public:/srv/api/public:ro
+
+  php:
+    image: unicornonacid/hamster-php:develop
+    build:
+      context: ./docker/php
+      dockerfile: ./Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ./api:/srv/api:rw
 
   db:
     image: unicornonacid/hamster-db:develop
