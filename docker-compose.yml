@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   client:
-    image: unciornonacid/hamster-client:develop
+    image: unciornonacid/minion-client:develop
     build:
       context: docker/client
       dockerfile: Dockerfile
@@ -12,7 +12,7 @@ services:
       - ./client:/usr/src/client:rw
 
   api:
-    image: unicornonacid/hamster-api:develop
+    image: unicornonacid/minion-api:develop
     build:
       context: docker/nginx
       dockerfile: ./Dockerfile
@@ -24,7 +24,7 @@ services:
       - ./api/public:/srv/api/public:ro
 
   php:
-    image: unicornonacid/hamster-php:develop
+    image: unicornonacid/minion-php:develop
     build:
       context: ./docker/php
       dockerfile: ./Dockerfile
@@ -34,7 +34,7 @@ services:
       - ./api:/srv/api:rw
 
   db:
-    image: unicornonacid/hamster-db:develop
+    image: unicornonacid/minion-db:develop
     build:
       context: ./docker/db
       dockerfile: ./Dockerfile
@@ -43,11 +43,11 @@ services:
       POSTGRES_PASSWORD: S3eahub9vUh2YdSY
       API_USER: api
       API_PASSWORD: b5wZL3ECzCnEV7Hf
-      POSTGRES_DB: hamster
+      POSTGRES_DB: minion
     ports:
       - 5432:5432
     volumes:
-      - hamster-data:/var/lib/postgresql/data:rw
+      - minion-data:/var/lib/postgresql/data:rw
 
 volumes:
-  hamster-data: {}
+  minion-data: {}
